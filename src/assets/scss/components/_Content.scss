@@ -1,3 +1,96 @@
-#content-container {
-    padding-top: 40px;
+#content-section-container {
+    padding: 0 20px 40px 20px;
+}
+
+#top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $LightGray;
+
+    h3 {
+        margin: 0;
+        font-weight: 800;
+    }
+
+    hr {
+        flex: 1;
+        margin: 0 20px;
+        border-width: 0;
+        background-color: $LightGray;
+        height: 1px;
+    }
+
+    #arrow-buttons {
+        width: 35px;
+        color: $DarkPurple;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        svg {
+            stroke: $DarkPurple;
+            stroke-width: 2;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+    }
+}
+
+#bottom-container {
+    max-width: 100%;
+    display: flex;
+    padding: 30px 0 0 15px;
+    align-items: flex-start;
+    text-align: center;
+    overflow: hidden;
+    scroll-behavior: smooth;
+
+    .promise-container {
+        width: 100%;
+        text-align: center;
+        color: $LightGray;
+    }
+
+    .result {
+        margin: 0 30px 0 0;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+            margin: 0 35px 0 5px;
+            transition: 0.3s;
+        }
+    }
+
+    #last-result {
+        margin: 0;
+    }
+
+    img {
+        width: 135px;
+        height: 135px;
+        border-radius: 7px;
+        transition: 0.3s;
+
+        &:hover {
+            transform: scale(1.05);
+            transition: 0.3s;
+        }
+    }
+
+    p {
+        margin: 0;
+        padding-top: 8px;
+        font-weight: 600;
+    }
+}
+
+// DESKTOP
+
+@media only screen and ($Desktop) {
+    #content-section-container {
+        padding: 0 30px 40px 30px;
+    }
 }

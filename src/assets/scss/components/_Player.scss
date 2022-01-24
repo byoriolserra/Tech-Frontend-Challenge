@@ -14,6 +14,11 @@
         height: 25px;
         width: 25px;
         color: $LightGray;
+        cursor: pointer;
+
+        &:hover {
+            color: darken($LightGray, 20%);
+        }
     }
 }
 
@@ -27,6 +32,10 @@
 
         svg {
             color: $DarkPurple;
+
+            &:hover {
+                color: darken($DarkPurple, 10%);
+            }
         }
     }
 }
@@ -46,7 +55,6 @@
 #player-actions {
     display: flex;
     justify-content: flex-end;
-    color: $LightGray;
 }
 
 // DESKTOP

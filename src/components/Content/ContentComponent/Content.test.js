@@ -1,14 +1,14 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import ContentSection from './ContentSection';
+import Content from './Content';
 import { Provider } from 'react-redux';
 import store from '../../../store';
 
-describe('ContentSection', () => {
+describe('Content', () => {
 
     let wrapper;
     beforeEach(() => {
-        wrapper = mount(<Provider store={store}><ContentSection title={'Test Section'} type={'categories'} /></Provider>);
+        wrapper = mount(<Provider store={store}><Content title={'Test Section'} type={'categories'} /></Provider>);
     });
 
     it('renders without crashing', () => {

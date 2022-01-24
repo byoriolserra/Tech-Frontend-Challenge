@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Header from '../Header/Header';
-import Content from '../Content/Content';
+import ContentContainer from '../Content/ContentContainer';
 import Player from '../Player/Player';
 import Spotify from '../../util/Spotify';
 import { addReleases, addPlaylists, addCategories } from '../Content/contentSlice';
@@ -30,7 +30,7 @@ const App = () => {
             <Navbar />
             <div id='right-container'>
                 <Header />
-                <Content />
+                <ContentContainer />
                 <Player />
             </div>
         </div>

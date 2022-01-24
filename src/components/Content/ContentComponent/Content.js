@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
-//MUI ICONS
+// MUI ICONS
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const ContentSection = ({ title , type}) => {
+const Content = ({ title , type}) => {
 
   let results = useSelector(state => state.content[type].results);
   let promiseLoading = useSelector(state => state.content[type].isLoading);
@@ -41,7 +41,7 @@ const ContentSection = ({ title , type}) => {
         {results && results.map((result) => {
           if(results.indexOf(result) === results.length - 1) {
             return (
-              <div className='last-result' key={results.length -1}>
+              <div className='result' id='last-result' key={results.length -1}>
                 <img src={result.cover} alt='' />
                 <p>{result.name}</p>
               </div>
@@ -65,4 +65,4 @@ const ContentSection = ({ title , type}) => {
   );
 };
 
-export default ContentSection;
+export default Content;

@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import App from './App';
 import Navbar from '../Navbar/Navbar';
 import Header from '../Header/Header';
-import Content from '../Content/Content';
+import ContentContainer from '../Content/ContentContainer';
 import Player from '../Player/Player';
 import { Provider } from 'react-redux';
 import store from '../../store';
@@ -31,8 +31,8 @@ describe('App', () => {
         expect(header).toHaveLength(1);
     });
 
-    it('renders a content section', () => {
-        const content = wrapper.find(Content);
+    it('renders a content container', () => {
+        const content = wrapper.find(ContentContainer);
 
         expect(content).toHaveLength(1);
     });
