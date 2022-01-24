@@ -1,26 +1,33 @@
 let accessToken;
-let redirectUri = 'https://tech-frontend-challenge.netlify.app';
-// let redirectUri = 'http://localhost:3000/callback/'; FOR DEVELOPMENT
 let clientId = process.env.REACT_APP_CLIENT_ID;
+let clientSecret = process.env.REACT_APP_CLIENT_SECRET;
 
 const Spotify = {
 
     async getAccessToken() {
-        
+
         if (accessToken) {
             return accessToken;
         };
 
-        const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
+        const response = await fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            body: new URLSearchParams({
+                grant_type : 'client_credentials'
+            }),
+            headers: {
+                Authorization : 'Basic ' + (Buffer.from(clientId + ':' + clientSecret).toString('base64')),
+                'Content-Type' : 'application/x-www-form-urlencoded'
+            }
+        })
 
-        if (!accessTokenMatch) {
-            // REDIRECTS TO REDIRECT URI AND RUNS METHOD AGAIN
-            window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectUri}`;
-        };
-
-        if (accessTokenMatch) {
-            accessToken = accessTokenMatch[1];
+        try {
+            const jsonResponse = await response.json();
+            accessToken = jsonResponse.access_token;
             return accessToken;
+
+        } catch (error) {
+            console.log(error);
         };
     },
 
