@@ -12,10 +12,17 @@ const App = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        Spotify.getAccessToken();
-        dispatch(addReleases());
-        dispatch(addPlaylists());
-        dispatch(addCategories());
+        const getData = async () => {
+            const token = await Spotify.getAccessToken();
+            try {
+                dispatch(addReleases(token));
+                dispatch(addPlaylists(token));
+                dispatch(addCategories(token));
+            } catch (error) {
+                console.error(error);
+            };
+        };
+        getData();
     });
 
     return (

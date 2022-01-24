@@ -22,25 +22,25 @@ const initialState = {
 
 // MIDDLEWARE THUNKS
 export const addReleases = createAsyncThunk('content/addReleases',
-    async () => {
-        const response = await Spotify.getNewReleases();
+    async (accessToken) => {
+        const response = await Spotify.getNewReleases(accessToken);
         return response;
     }
 );
 
 export const addPlaylists = createAsyncThunk('content/addPlaylists',
-    async () => {
-        const response = await Spotify.getFeaturedPlaylists();
+    async (accessToken) => {
+        const response = await Spotify.getFeaturedPlaylists(accessToken);
         return response;
     }
 );
 
 export const addCategories = createAsyncThunk('content/addCategories',
-    async () => {
-        const response = await Spotify.getCategories();
+    async (accessToken) => {
+        const response = await Spotify.getCategories(accessToken);
         return response;
     }
-)
+);
 
 // SLICE CREATOR
 const contentSlice = createSlice({

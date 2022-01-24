@@ -1,38 +1,26 @@
-let accessToken;
-let clientId = process.env.REACT_APP_CLIENT_ID;
-let clientSecret = process.env.REACT_APP_CLIENT_SECRET;
-
 const Spotify = {
 
     async getAccessToken() {
 
-        if (accessToken) {
-            return accessToken;
-        };
+        const clientId = process.env.REACT_APP_CLIENT_ID;
+        const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
 
         const response = await fetch('https://accounts.spotify.com/api/token', {
             method: 'POST',
             body: new URLSearchParams({
-                grant_type : 'client_credentials'
+                grant_type: 'client_credentials'
             }),
             headers: {
-                Authorization : 'Basic ' + (Buffer.from(clientId + ':' + clientSecret).toString('base64')),
-                'Content-Type' : 'application/x-www-form-urlencoded'
+                Authorization: 'Basic ' + (Buffer.from(clientId + ':' + clientSecret).toString('base64')),
+                'Content-Type': 'application/x-www-form-urlencoded'
             }
-        })
+        });
 
-        try {
-            const jsonResponse = await response.json();
-            accessToken = jsonResponse.access_token;
-            return accessToken;
-
-        } catch (error) {
-            console.log(error);
-        };
+        const jsonResponse = await response.json();
+        return jsonResponse.access_token;
     },
 
-    async getNewReleases() {
-        const token = await Spotify.getAccessToken();
+    async getNewReleases(token) {
 
         const response = await fetch('https://api.spotify.com/v1/browse/new-releases', {
             headers: {
@@ -47,8 +35,7 @@ const Spotify = {
         }));
     },
 
-    async getFeaturedPlaylists() {
-        const token = await Spotify.getAccessToken();
+    async getFeaturedPlaylists(token) {
 
         const response = await fetch('https://api.spotify.com/v1/browse/featured-playlists', {
             headers: {
@@ -63,8 +50,7 @@ const Spotify = {
         }));
     },
 
-    async getCategories() {
-        let token = await Spotify.getAccessToken();
+    async getCategories(token) {
 
         const response = await fetch('https://api.spotify.com/v1/browse/categories', {
             headers: {
@@ -73,7 +59,7 @@ const Spotify = {
         });
         const jsonResponse = await response.json();
 
-        return jsonResponse.categories.items.map((category) => ({
+        return jsonResponse.categories.items.map(category => ({
             name: category.name,
             cover: category.icons[0].url
         }));
